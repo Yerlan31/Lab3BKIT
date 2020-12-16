@@ -1,0 +1,77 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab3
+{
+    
+   
+    //class Tempor : IComparer<GeomFig>
+    //{
+    //    public int Compare(GeomFig a, GeomFig b)
+    //    {
+    //        if (a.s > b.s) return 1;
+    //        if (a.s < b.s) return -1;
+    //        return 0;
+    //    }
+    //}
+    abstract class GeomFig : IComparable<GeomFig>
+    {
+        
+        public void Print()
+        {
+            Console.WriteLine(this.ToString());
+        }
+
+        public int CompareTo(GeomFig a)
+        {
+            if (a.s < this.s) return 1;
+            if (a.s > this.s) return -1;
+            return 0;
+        }
+
+        protected double s;
+
+        public virtual double EstSqr()
+        { return 1; }
+
+    }
+
+    
+
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Square Example = new Square(20);
+            Circle one = new Circle(10);
+            Rectangle two = new Rectangle(30, 5);
+            Square three = new Square(20);
+            
+            //////////////////////////////////
+
+            ArrayList figlist = new ArrayList() { Example, one, two, three };
+            foreach (GeomFig temp  in figlist)
+            {
+                Console.WriteLine(temp.ToString());
+            }
+
+            /////////////////////////////////
+            Console.WriteLine("Salam");
+
+            List<GeomFig> listof = new List<GeomFig>() { Example, one, two, three };
+
+            listof.Sort();
+
+            foreach (GeomFig temp in listof)
+            {
+                Console.WriteLine(temp.ToString());
+            }
+
+        }
+    }
+}
